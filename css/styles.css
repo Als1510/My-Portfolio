@@ -511,8 +511,16 @@ img{
     width: 80%;
 }
 
-.skills_node{
+.skills_sql{
+    width: 80%;
+}
+
+.skills_gcp{
     width: 60%;
+}
+
+.skills_aws{
+    width: 40%;
 }
 
 .skills_python{
@@ -536,7 +544,7 @@ img{
 }
 
 .skills_ml{
-    width: 40%;
+    width: 60%;
 }
 
 .skills_dv{
