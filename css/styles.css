@@ -1172,7 +1172,7 @@ img {
     }
 
     .services_container {
-        grid-template-columns: repeat(3, 218px);
+        grid-template-columns: repeat(2, 250px);
         justify-content: center;
     }
 
@@ -1256,7 +1256,7 @@ img {
     }
 
     .services_container {
-        grid-template-columns: repeat(3, 238px);
+        grid-template-columns: repeat(2, 315px);
     }
 
     .portfolio_content {
