@@ -1,3 +1,13 @@
+let hue = 0;
+const totalMinutes = 60;
+const intervalMs = 60 * 1000;
+const step = 360 / totalMinutes;
+
+setInterval(() => {
+  hue = (hue + step) % 360;
+  document.documentElement.style.setProperty('--hue-color', hue.toString());
+}, intervalMs);
+
 const navMenu = document.getElementById('nav-menu'),
   navToggle = document.getElementById('nav-toggle'),
   navClose = document.getElementById('nav-close')
