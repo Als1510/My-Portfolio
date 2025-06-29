@@ -1,11 +1,14 @@
-let hue = 0;
+let hue = Number(localStorage.getItem('hue-color')) || 0;
 const totalMinutes = 60;
 const intervalMs = 60 * 1000;
 const step = 360 / totalMinutes;
 
+document.documentElement.style.setProperty('--hue-color', hue.toString());
+
 setInterval(() => {
   hue = (hue + step) % 360;
   document.documentElement.style.setProperty('--hue-color', hue.toString());
+  localStorage.setItem('hue-color', hue.toString());
 }, intervalMs);
 
 const navMenu = document.getElementById('nav-menu'),
