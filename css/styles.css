@@ -484,80 +484,44 @@ img {
     background-color: var(--first-color);
 }
 
-.skills_html {
-    width: 90%;
+.skills_10 {
+    width: 10%;
 }
 
-.skills_css {
-    width: 80%;
+.skills_20 {
+    width: 20%;
 }
 
-.skills_js {
-    width: 60%;
+.skills_30 {
+    width: 30%;
 }
 
-.skills_figma {
-    width: 50%;
-}
-
-.skills_angular {
-    width: 80%;
-}
-
-.skills_react {
-    width: 70%;
-}
-
-.skills_git {
-    width: 60%;
-}
-
-.skills_php {
-    width: 60%;
-}
-
-.skills_node {
-    width: 80%;
-}
-
-.skills_sql {
-    width: 80%;
-}
-
-.skills_gcp {
-    width: 60%;
-}
-
-.skills_aws {
+.skills_40 {
     width: 40%;
 }
 
-.skills_python {
-    width: 70%;
+.skills_50 {
+    width: 50%;
 }
 
-.skills_mysql {
-    width: 80%;
-}
-
-.skills_mongo {
+.skills_60 {
     width: 60%;
 }
 
-.skills_numpy {
-    width: 75%;
+.skills_70 {
+    width: 70%;
 }
 
-.skills_pandas {
+.skills_80 {
     width: 80%;
 }
 
-.skills_ml {
-    width: 60%;
+.skills_90 {
+    width: 90%;
 }
 
-.skills_dv {
-    width: 70%;
+.skills_100 {
+    width: 100%;
 }
 
 .skills_close .skills_list {
@@ -570,7 +534,7 @@ img {
     margin-bottom: var(--mb-2-5);
 }
 
-.skills_open .skills_arrow {
+.skills_close .skills_arrow {
     transform: rotate(-100deg);
 }
 
@@ -769,6 +733,37 @@ img {
 
 .portfolio_description {
     margin-bottom: var(--mb-0-75);
+}
+
+.tech_demo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tech_stack {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.chip {
+    padding: 0.2rem 0.8rem;
+    border-radius: 10px;
+    background-color: var(--first-color);
+    color: #fff;
+    height: fit-content;
+    font-size: 10px;
+}
+
+.portfolio_button {
+    padding: 0 0.4rem;
+    align-self: flex-end;
+}
+
+.portfolio_button>.button_icon {
+    margin: 0;
 }
 
 .portfolio_button:hover .button_icon {
