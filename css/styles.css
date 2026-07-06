@@ -1051,7 +1051,6 @@ img {
     .skills_container,
     .portfolio_content,
     .project_container,
-    .contact_container,
     .footer_container {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1271,10 +1270,6 @@ img {
 
     .swiper-container-horizontal>.swiper-pagination-bullets {
         bottom: -4.5rem;
-    }
-
-    .contact_form {
-        width: 460px;
     }
 
     .contact_inputs {
