@@ -1,15 +1,6 @@
-let hue = Number(localStorage.getItem('hue-color')) || 0;
-const totalMinutes = 60;
-const intervalMs = 60 * 1000;
-const step = 360 / totalMinutes;
-
-document.documentElement.style.setProperty('--hue-color', hue.toString());
-
-setInterval(() => {
-  hue = (hue + step) % 360;
-  document.documentElement.style.setProperty('--hue-color', hue.toString());
-  localStorage.setItem('hue-color', hue.toString());
-}, intervalMs);
+// Fixed accent color (blue) — also clears any stale hue saved by the old auto-cycling script
+localStorage.removeItem('hue-color');
+document.documentElement.style.setProperty('--hue-color', '230');
 
 const navMenu = document.getElementById('nav-menu'),
   navToggle = document.getElementById('nav-toggle'),
@@ -83,8 +74,8 @@ modalCloses.forEach((modalClose) => [
 ])
 
 let swiper = new Swiper('.portfolio_container', {
-  cssMode: true,
   loop: true,
+  speed: 600,
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
@@ -151,3 +142,37 @@ themeButton.addEventListener('click', () => {
   localStorage.setItem('selected-icon', getCurrentIcon())
   updateRoadmapImage();
 })
+
+/*==================== CONTACT FORM ====================*/
+const contactForm = document.getElementById('contact-form')
+const contactStatus = document.getElementById('contact-status')
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const submitBtn = contactForm.querySelector('.contact_btn')
+    const formData = new FormData(contactForm)
+
+    submitBtn.disabled = true
+    contactStatus.textContent = 'Sending...'
+    contactStatus.className = 'contact_status'
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => {
+        contactStatus.textContent = "Thanks! Your message has been sent — I'll get back to you soon."
+        contactStatus.className = 'contact_status contact_status-success'
+        contactForm.reset()
+      })
+      .catch(() => {
+        contactStatus.textContent = 'Something went wrong. Please try emailing me directly instead.'
+        contactStatus.className = 'contact_status contact_status-error'
+      })
+      .finally(() => {
+        submitBtn.disabled = false
+      })
+  })
+}

@@ -2,7 +2,7 @@
 
 :root {
     --header-height: 3rem;
-    --hue-color: 000;
+    --hue-color: 230;
     transition: all 1s ease-in-out;
 
     --first-color: hsl(var(--hue-color), 69%, 61%);
@@ -419,7 +419,67 @@ img {
 
 /*==================== SKILLS ====================*/
 .skills_container {
-    row-gap: 0;
+    row-gap: 2.5rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.skills_group-title {
+    font-size: var(--h3-font-size);
+    color: var(--title-color);
+    margin-bottom: var(--mb-1-5);
+    position: relative;
+    padding-left: 0.75rem;
+}
+
+.skills_group-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.15rem;
+    bottom: 0.15rem;
+    width: 4px;
+    border-radius: 4px;
+    background-color: var(--first-color);
+}
+
+.skills_tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.skill_tile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background-color: var(--container-color);
+    border-radius: 0.75rem;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, .08);
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+    color: var(--title-color);
+    transition: transform .25s, box-shadow .25s;
+}
+
+.skill_tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, .12);
+}
+
+.skill_icon {
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.skill_icon-uil {
+    color: var(--first-color);
+}
+
+@media screen and (max-width: 768px) {
+    .skills_container {
+        grid-template-columns: 1fr;
+    }
 }
 
 .skills_header {
@@ -582,6 +642,13 @@ img {
     color: var(--text-color-light);
 }
 
+.qualification_desc {
+    margin-top: 0.5rem;
+    font-size: var(--smaller-font-size);
+    color: var(--text-color-light);
+    line-height: 1.4;
+}
+
 .qualification_rounder {
     display: inline-block;
     width: 13px;
@@ -608,6 +675,51 @@ img {
 
 .qualification_button.qualification_active {
     color: var(--first-color);
+}
+
+/*==================== ACHIEVEMENTS ====================*/
+.achievements_container {
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.achievements_card {
+    background-color: var(--container-color);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, .1);
+    text-align: center;
+}
+
+.achievements_icon {
+    font-size: 1.75rem;
+    color: var(--first-color);
+    margin-bottom: var(--mb-0-75);
+}
+
+.achievements_title {
+    font-size: var(--normal-font-size);
+    color: var(--title-color);
+    margin-bottom: 0.25rem;
+}
+
+.achievements_subtitle {
+    display: block;
+    font-size: var(--smaller-font-size);
+    color: var(--first-color);
+    margin-bottom: 0.5rem;
+}
+
+.achievements_desc {
+    font-size: var(--smaller-font-size);
+    color: var(--text-color-light);
+    line-height: 1.4;
+}
+
+@media screen and (max-width: 576px) {
+    .achievements_container {
+        grid-template-columns: 1fr;
+    }
 }
 
 /*==================== SERVICES ====================*/
@@ -711,8 +823,12 @@ img {
 }
 
 /*==================== PORTFOLIO ====================*/
+.portfolio_wrapper {
+    position: relative;
+}
+
 .portfolio_container {
-    overflow: initial;
+    overflow: hidden;
 }
 
 .portfolio_content {
@@ -788,8 +904,14 @@ img {
     right: -.5rem;
 }
 
-.swiper-container-horizontal>.swiper-pagination-bullets {
+.portfolio_wrapper>.swiper-pagination {
+    left: 0;
+    width: 100%;
     bottom: 0rem;
+}
+
+.portfolio_wrapper>.swiper-pagination .swiper-pagination-bullet {
+    margin: 0 4px;
 }
 
 .swiper-pagination-bullet-active {
@@ -834,6 +956,43 @@ img {
 /*==================== CONTACT ME ====================*/
 .contact_container {
     row-gap: 3rem;
+    grid-template-columns: 1fr;
+}
+
+.contact_content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact_hidden {
+    display: none;
+}
+
+.contact_label-optional {
+    color: var(--text-color-light);
+    font-weight: 400;
+}
+
+.contact_status {
+    min-height: 1.5rem;
+    font-size: var(--small-font-size);
+    margin-top: 0.5rem;
+}
+
+.contact_status-success {
+    color: #2e7d32;
+}
+
+.contact_status-error {
+    color: #c62828;
+}
+
+@media screen and (min-width: 768px) {
+    .contact_container {
+        grid-template-columns: 0.8fr 1.2fr;
+        column-gap: 3rem;
+    }
 }
 
 .contact_information {
@@ -1268,7 +1427,7 @@ img {
         right: -3.5rem;
     }
 
-    .swiper-container-horizontal>.swiper-pagination-bullets {
+    .portfolio_wrapper>.swiper-pagination {
         bottom: -4.5rem;
     }
 
