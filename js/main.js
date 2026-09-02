@@ -76,13 +76,19 @@ modalCloses.forEach((modalClose) => [
 let swiper = new Swiper('.portfolio_container', {
   loop: true,
   speed: 600,
+  spaceBetween: 24,
+  slidesPerView: 1,
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  },
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true
   },
 })
 

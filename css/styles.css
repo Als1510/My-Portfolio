@@ -832,29 +832,96 @@ img {
 }
 
 .portfolio_content {
-    padding: 0 1.5rem;
     margin-bottom: 1.5rem;
+    height: auto;
+}
+
+.portfolio_card {
+    background-color: var(--container-color);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, .1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform .3s, box-shadow .3s;
+}
+
+.portfolio_card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, .15);
+}
+
+.portfolio_img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: var(--input-color);
 }
 
 .portfolio_img {
-    width: 265px;
-    border-radius: .5rem;
-    justify-self: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+    transition: transform .35s;
+}
+
+.portfolio_card:hover .portfolio_img {
+    transform: scale(1.04);
+}
+
+.portfolio_status {
+    position: absolute;
+    top: .75rem;
+    left: .75rem;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: var(--smaller-font-size);
+    color: #fff;
+    background-color: rgba(0, 0, 0, .55);
+    padding: .2rem .6rem;
+    border-radius: 1rem;
+}
+
+.portfolio_status::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #3ecf6e;
+}
+
+.portfolio_data {
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    flex: 1;
 }
 
 .portfolio_title {
     font-size: var(--h3-font-size);
-    margin-bottom: var(--mb-0-5);
+    margin-bottom: 0;
 }
 
 .portfolio_description {
-    margin-bottom: var(--mb-0-75);
+    margin-bottom: 0;
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
 }
 
 .tech_demo {
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
     justify-content: space-between;
+    gap: .75rem;
+    margin-top: auto;
+    padding-top: .5rem;
 }
 
 .tech_stack {
@@ -865,25 +932,38 @@ img {
 }
 
 .chip {
-    padding: 0.2rem 0.8rem;
-    border-radius: 10px;
+    padding: 0.25rem 0.7rem;
+    border-radius: 0.75rem;
     background-color: var(--first-color);
+    border: 1px solid rgba(255, 255, 255, .18);
     color: #fff;
     height: fit-content;
-    font-size: 10px;
+    font-size: var(--smaller-font-size);
+    letter-spacing: .01em;
 }
 
 .portfolio_button {
-    padding: 0 0.4rem;
+    flex-shrink: 0;
     align-self: flex-end;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--first-color);
+    border-radius: .6rem;
+    transition: background-color .2s, transform .2s;
 }
 
 .portfolio_button>.button_icon {
     margin: 0;
+    color: #fff;
+    font-size: 1.1rem;
 }
 
-.portfolio_button:hover .button_icon {
-    transform: translateX(.25rem);
+.portfolio_button:hover {
+    background-color: var(--first-color-alt);
+    transform: translateX(.2rem);
 }
 
 .swiper-button-prev::after,
@@ -904,23 +984,8 @@ img {
     right: -.5rem;
 }
 
-.portfolio_wrapper>.swiper-pagination {
-    left: 0;
-    width: 100%;
-    bottom: 0rem;
-}
-
-.portfolio_wrapper>.swiper-pagination .swiper-pagination-bullet {
-    margin: 0 4px;
-}
-
-.swiper-pagination-bullet-active {
-    background-color: var(--first-color);
-}
-
 .swiper-button-prev,
-.swiper-button-next,
-.swiper-pagination-bullets {
+.swiper-button-next {
     outline: none;
 }
 
@@ -1208,7 +1273,6 @@ img {
 
     .about_container,
     .skills_container,
-    .portfolio_content,
     .project_container,
     .footer_container {
         grid-template-columns: repeat(2, 1fr);
@@ -1340,14 +1404,6 @@ img {
         width: 450px;
     }
 
-    .portfolio_img {
-        width: 320px;
-    }
-
-    .portfolio_content {
-        align-items: center;
-    }
-
     .project {
         text-align: initial;
     }
@@ -1411,10 +1467,6 @@ img {
         grid-template-columns: repeat(2, 315px);
     }
 
-    .portfolio_content {
-        column-gap: 5rem;
-    }
-
     .swiper-portfolio-icon {
         font-size: 3.5rem;
     }
@@ -1427,11 +1479,11 @@ img {
         right: -3.5rem;
     }
 
-    .portfolio_wrapper>.swiper-pagination {
-        bottom: -4.5rem;
-    }
-
     .contact_inputs {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .portfolio_wrapper.container {
+        max-width: 1100px;
     }
 }
