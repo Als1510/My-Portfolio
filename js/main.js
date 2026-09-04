@@ -73,9 +73,91 @@ modalCloses.forEach((modalClose) => [
   })
 ])
 
+/*==================== PROJECTS DATA ====================*/
+const projects = [
+  {
+    title: "Why Is My App Slow",
+    description: "Diagnoses slow web interactions using real Web Vitals metrics, helping developers pinpoint frontend performance bottlenecks.",
+    image: "./img/why-is-my-app-slow.jpg",
+    tech: ["JavaScript", "Performance", "Web Vitals"],
+    link: "https://why-is-my-app-slow.netlify.app",
+    status: "live"
+  },
+  {
+    title: "CP Dashboard",
+    description: "Aggregates competitive programming stats from 5 platforms via APIs and scraping, in an Angular/Ionic UI with a Node.js backend.",
+    image: "./img/cp-dashboard.jpg",
+    tech: ["Angular", "TypeScript", "Node.js", "Ionic 5", "MongoDB", "HTML", "SCSS"],
+    link: "https://cp-dashboard.netlify.app",
+    status: "live"
+  },
+  {
+    title: "WhatsApp Chat Analyser",
+    description: "Parses exported WhatsApp chat logs and surfaces analytics like active users, message trends, and word frequency via Streamlit.",
+    image: "./img/whatsapp-chat-analyser.jpg",
+    tech: ["Python", "Pandas", "Numpy", "Streamlit", "Sklearn", "nltk"],
+    link: "https://whatsappchatsanalyser.streamlit.app/",
+    status: "live"
+  },
+  {
+    title: "Movies Recommender",
+    description: "Content-based movie recommender using a precomputed similarity matrix, fetching live posters from the TMDB API via Streamlit.",
+    image: "./img/movie-recommender.jpg",
+    tech: ["Python", "Pandas", "Scikit-learn", "Streamlit"],
+    link: "https://movies-recommender-system.streamlit.app/",
+    status: "live"
+  },
+  {
+    title: "DevConnector",
+    description: "Developer social network built with Angular and Ionic, shipping as both a responsive web app and a packaged native Android app.",
+    image: "./img/dev-connector.jpg",
+    tech: ["Angular", "TypeScript", "Node.js", "Ionic 5", "MongoDB", "HTML", "CSS"],
+    link: "https://devconnectors.netlify.app",
+    status: "live"
+  },
+]
+
+/*==================== RENDER PROJECTS ====================*/
+function escapeHtml(str) {
+  const div = document.createElement('div')
+  div.textContent = str
+  return div.innerHTML
+}
+
+function renderProjects() {
+  const wrapper = document.getElementById('portfolio-wrapper')
+  if (!wrapper) return
+
+  wrapper.innerHTML = projects.map(project => `
+    <div class="portfolio_content swiper-slide">
+      <div class="portfolio_card">
+        <div class="portfolio_img-wrap">
+          <span class="portfolio_status">${escapeHtml(project.status)}</span>
+          <img src="${project.image}" alt="${escapeHtml(project.title)} project screenshot" class="portfolio_img">
+        </div>
+        <div class="portfolio_data">
+          <h3 class="portfolio_title">${escapeHtml(project.title)}</h3>
+          <p class="portfolio_description">${escapeHtml(project.description)}</p>
+          <div class="tech_demo">
+            <div class="tech_stack">
+              ${project.tech.map(t => `<div class="chip">${escapeHtml(t)}</div>`).join('')}
+            </div>
+            <a href="${project.link}" class="portfolio_button" target="_blank" aria-label="View ${escapeHtml(project.title)} live">
+              <i class="uil uil-arrow-up-right button_icon"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('')
+}
+
+// Render project cards before Swiper initializes, so it has slides to work with.
+renderProjects()
+
 let swiper = new Swiper('.portfolio_container', {
   loop: true,
-  speed: 600,
+  speed: 900,
   spaceBetween: 24,
   slidesPerView: 1,
   breakpoints: {
@@ -90,6 +172,11 @@ let swiper = new Swiper('.portfolio_container', {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: true,
+    pauseOnMouseEnter: true,
+  },
 })
 
 const sections = document.querySelectorAll('section[id]')
@@ -99,7 +186,7 @@ function scrollActive() {
   sections.forEach(current => {
     const sectionHeight = current.offsetHeight
     const sectionTop = current.offsetTop - 50
-    sectionId = current.getAttribute('id')
+    const sectionId = current.getAttribute('id')
     if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
       document.querySelector('.nav_menu a[href*=' + sectionId + ']').classList.add('active-link')
     } else {
